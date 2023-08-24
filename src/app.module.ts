@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GeneratorGeneratorModule } from './generator/generatorGenerator.module';
@@ -20,7 +18,7 @@ import { GeneratorGeneratorModule } from './generator/generatorGenerator.module'
     }),
     GeneratorGeneratorModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
