@@ -1,7 +1,7 @@
 import { LampDocument } from './lamp.entity';
 import { Model, Types } from 'mongoose';
 
-const possibleStatus = ['light', 'dark'];
+const possibleStatus = ['light', 'dark', 'normal'];
 export default function lampGenerator(
   lampModel: Model<LampDocument>,
   lampId: Types.ObjectId,
