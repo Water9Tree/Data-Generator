@@ -44,9 +44,12 @@ export class GeneratorGeneratorService {
                 `buildingNumber: ${buildingId}, floorNumber: ${floorId}가 등록되었습니다.`,
               );
 
-              const newJob = new CronJob(CronExpression.EVERY_SECOND, () => {
-                trashcanGenerator(this.buildingModel, buildingId, floorId);
-              });
+              const newJob = new CronJob(
+                CronExpression.EVERY_10_SECONDS,
+                () => {
+                  trashcanGenerator(this.buildingModel, buildingId, floorId);
+                },
+              );
 
               this.schedulerRegistry.addCronJob(
                 this.getTrashcanCronName(buildingId, floorId),
@@ -73,9 +76,12 @@ export class GeneratorGeneratorService {
               if (this.isNotYetLampCronJobRegistered(lampId)) {
                 console.log(`lampName: ${lamp.lampName} 가 등록되었습니다.`);
 
-                const newJob = new CronJob(CronExpression.EVERY_SECOND, () => {
-                  lampGenerator(this.lampModel, lampId);
-                });
+                const newJob = new CronJob(
+                  CronExpression.EVERY_10_SECONDS,
+                  () => {
+                    lampGenerator(this.lampModel, lampId);
+                  },
+                );
 
                 this.schedulerRegistry.addCronJob(
                   this.getLampCronName(lampId),

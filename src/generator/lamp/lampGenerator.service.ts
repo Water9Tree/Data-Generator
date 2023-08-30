@@ -26,8 +26,8 @@ export default function lampGenerator(
 
 function changeStatusRandomly(status: 'light' | 'dark' | 'normal'): string {
   try {
-    if (Math.floor(Math.random() * 2) === 1) {
-      // 50% 확률로 가로등 현재 상태 변경
+    if (Math.floor(Math.random() * 10) === 1) {
+      // 10% 확률로 가로등 현재 상태 변경
 
       const changedStatus = possibleStatus.filter((s) => s != status)[
         Math.floor(Math.random() * 2)
