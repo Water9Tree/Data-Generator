@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GeneratorGeneratorModule } from './generator/generatorGenerator.module';
+import { LampsNotificationModule } from './notification/lampNotification.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { GeneratorGeneratorModule } from './generator/generatorGenerator.module'
       inject: [ConfigService],
     }),
     GeneratorGeneratorModule,
+    LampsNotificationModule,
   ],
   controllers: [],
   providers: [],
