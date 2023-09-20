@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GeneratorGeneratorModule } from './generator/generatorGenerator.module';
-import { LampsNotificationModule } from './notification/lampNotification.module';
+import { LampsNotificationModule } from './notification/lamp/lampNotification.module';
 
 @Module({
   imports: [

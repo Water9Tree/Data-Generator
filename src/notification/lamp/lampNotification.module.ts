@@ -3,8 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   Building,
   BuildingSchema,
-} from '../generator/trashcan/building.entity';
-import { Lamp, LampSchema } from '../generator/lamp/lamp.entity';
+} from '../../generator/trashcan/building.entity';
+import { Lamp, LampSchema } from '../../generator/lamp/lamp.entity';
 import { User, UserSchema } from './user/user.entity';
 import { LampsNotificationService } from './lampNotification.service';
 

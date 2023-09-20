@@ -3,12 +3,8 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import * as os from 'os';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lamp, LampDocument } from 'src/generator/lamp/lamp.entity';
-import { User, UserDocument } from './user/user.entity';
-import { Model, Types } from 'mongoose';
-import {
-  Building,
-  BuildingDocument,
-} from 'src/generator/trashcan/building.entity';
+import { User, UserDocument } from 'src/notification/lamp/user/user.entity';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class LampsNotificationService {
@@ -18,7 +14,6 @@ export class LampsNotificationService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Lamp.name) private lampModel: Model<LampDocument>,
-    @InjectModel(Building.name) private buildingModel: Model<BuildingDocument>,
   ) {}
 
   @Cron(CronExpression.EVERY_5_SECONDS)
