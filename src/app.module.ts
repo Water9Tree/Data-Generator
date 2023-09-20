@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GeneratorGeneratorModule } from './generator/generatorGenerator.module';
 import { LampsNotificationModule } from './notification/lamp/lampNotification.module';
+import { TrashcanNotificationModule } from './notification/trashcan/trashcanNotification.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LampsNotificationModule } from './notification/lamp/lampNotification.mo
     }),
     GeneratorGeneratorModule,
     LampsNotificationModule,
+    TrashcanNotificationModule,
   ],
   controllers: [],
   providers: [],
