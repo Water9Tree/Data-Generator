@@ -19,22 +19,25 @@ export class LampsNotificationService {
   @Cron(CronExpression.EVERY_5_SECONDS)
   handleCron() {
     console.log('Called when the current second is 5');
-    this.userModel.find({ role: 'ROLE_ADMIN' }).then((users) => {
-      this.lampModel.find({}).then((lamps) => {
-        for (const lamp of lamps) {
-          for (const user of users) {
-            if (user.expoToken) {
-              this.checkAndSendPush(
-                user,
-                lamp.status,
-                lamp.lampName,
-                lamp.location,
-              );
+    this.userModel
+      .find({ role: 'ROLE_ADMIN', isNotificationEnabled: true })
+      .then((users) => {
+        this.lampModel.find({}).then((lamps) => {
+          console.log(users);
+          for (const lamp of lamps) {
+            for (const user of users) {
+              if (user.expoToken) {
+                this.checkAndSendPush(
+                  user,
+                  lamp.status,
+                  lamp.lampName,
+                  lamp.location,
+                );
+              }
             }
           }
-        }
+        });
       });
-    });
   }
 
   private checkAndSendPush(
@@ -83,7 +86,7 @@ export class LampsNotificationService {
       },
       body: JSON.stringify({
         to: user.expoToken,
-        title: os?.hostname(),
+        title: '가로등 알림',
         body: lampInfo,
       }),
     })
