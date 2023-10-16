@@ -22,7 +22,10 @@ export class TrashcanNotificationService {
   handleCron() {
     console.log('Called when the current second is 5');
     this.userModel
-      .find({ role: ['ROLE_CLEANER', 'ROLE_ADMIN'] })
+      .find({
+        role: ['ROLE_CLEANER', 'ROLE_ADMIN'],
+        isNotificationEnabled: true,
+      })
       .then((users) => {
         this.buildingModel.find({}).then((buildings) => {
           for (const building of buildings) {

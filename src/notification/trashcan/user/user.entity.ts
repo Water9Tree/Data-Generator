@@ -24,6 +24,9 @@ export class User {
   @Prop()
   role: Role;
 
+  @Prop()
+  isNotificationEnabled: boolean;
+
   @Prop({ default: new Date(), type: mongoose.Schema.Types.Date })
   createdAt: Date;
 
