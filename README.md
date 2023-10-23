@@ -1,73 +1,39 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Data Generator
+데이터 생성기와 알림 동작을 수행하는 서버입니다.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### 데이터 생성기의 동작
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<img width="500" alt="image" src="https://github.com/Water9Tree/Data-Generator/assets/78250089/563bf430-7260-4cc6-9749-6feaf1b96190">
 
-## Description
+1. Data Generator Pool은 주기적으로 DB에 저장된 전체 가로등/쓰레기통 정보를 가져옵니다.
+2. 그 후 Data Generator Pool은 추가되거나 삭제된 가로등/쓰레기통이 있는 지 확인하고,
+3. 추가된 가로등/쓰레기통은 새로운 Data Generator와 1:1로 매핑해주고,
+4. 삭제된 가로등/쓰레기통의 Data Generator는 삭제해줍니다.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### 알림 동작
 
-## Installation
+<img width="500" alt="image" src="https://github.com/Water9Tree/Data-Generator/assets/78250089/85c5a41a-8aa2-4a2a-bd95-9c4ab0f928b8">
 
+1. 먼저 모바일, 리액트 네이티브에서 엑스포 노티피케이션이라는 라이브러리를 통해 토큰을 발급 받습니다.
+2. 이렇게 발급 받은 토큰은 로그인 시에 백엔드(해당 데이터 생성기 앱)으로 전달 해주고,
+3. 백엔드에서는 이 토큰을 송신할 메시지와 함께 Expo Back-end로 전달하게 됩니다.
+4. 안드로이드에서 이 알림을 모바일에 보내기 위해 FCM을 사용하게 되고, 이 FCM이 Push 알림을 수행하여 사용자에게 푸시 알림이 제공됩니다.
+
+
+### How to Deploy
+
+1. root path에 `.env` 파일 추가
+```dotenv
+# 예시
+MONGODB_URL={{ mongodb://localhost:27017 }}
+```
+
+2. 필요한 패키지 설치 (`npm v8.19.2`)
 ```bash
 $ npm install
 ```
 
-## Running the app
-
+3. production 배포
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
 $ npm run start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
